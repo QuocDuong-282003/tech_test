@@ -1,5 +1,4 @@
 # tech_test
-# Skipli Coding Challenge – Employee Task Management
 
 
 
@@ -28,6 +27,7 @@
 ### 1. Owner
 - Đăng nhập bằng **số điện thoại**  
   > Hiện tại chưa tích hợp SMS thật do cần mua dịch vụ, nên mã OTP sẽ được log ra terminal khi chạy backend.
+
 - Quản lý nhân viên:
   - Thêm
   - Chỉnh sửa
@@ -36,7 +36,15 @@
 - Chat realtime với từng nhân viên
 - Giao task và theo dõi tiến độ thực hiện
 
-![Owner Flow](./image.png)
+### Demo Owner
+| Đăng nhập | Quản lý Employee |
+| :---: | :---: |
+| ![Login](./frontend/public/image/login.png) | ![Dashboard](./frontend/public/image/own.png) |
+
+| Tạo Task | Chat với Employee |
+| :---: | :---: |
+| ![Create Task](./frontend/public/image/createtask.png) | ![Chat](./frontend/public/image/chat.png) |
+
 
 ---
 
@@ -45,6 +53,15 @@
 - Xem danh sách task được giao
 - Thiết lập thông tin cá nhân khi đăng nhập lần đầu
 - Chat realtime với Owner
+
+### Demo Employee
+| Đăng nhập | Thông báo Email |
+| :---: | :---: |
+| ![Login](./frontend/public/image/empllogin.png) | ![Email](./frontend/public/image/noticeemail.png) |
+
+| Danh sách Task | Chat với Owner |
+| :---: | :---: |
+| ![Dashboard](./frontend/public/image/uihomeempl.png) | ![Chat](./frontend/public/image/chatempl.png) |
 
 ---
 
