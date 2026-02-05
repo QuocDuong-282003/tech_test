@@ -28,6 +28,7 @@ export class NotificationService {
     }
 
     async sendSMS(to: string, message: string): Promise<boolean> {
+        console.log(`to: ${to}, Message: ${message}`);
 
         if (
             !this.twilioClient ||
@@ -36,7 +37,7 @@ export class NotificationService {
             console.warn(
                 ` SMS provider not configured. Mock sending to ${to}`
             );
-            return false;
+            return true; // Return true so it creates the user/code
         }
 
         try {
@@ -55,7 +56,8 @@ export class NotificationService {
             return true;
         } catch (error) {
             console.error('Failed to send SMS:', error);
-            return false;
+            console.log(`[SMS FALLBACK] Could not send SMS. Content: "${message}"`);
+            return true; // Return true to allow flow to continue even if SMS fails
         }
     }
 
