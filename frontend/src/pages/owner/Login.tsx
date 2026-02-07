@@ -4,10 +4,12 @@ import { createOwnerAccessCode } from '../../services/auth';
 
 const OwnerLogin = () => {
     const [phone, setPhone] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         try {
             // Request access code
             await createOwnerAccessCode(phone);
@@ -16,6 +18,8 @@ const OwnerLogin = () => {
             navigate('/owner/verify');
         } catch (err: any) {
             alert('Error: ' + (err.response?.data?.error || err.message));
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -33,10 +37,15 @@ const OwnerLogin = () => {
                             className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="+1234567890"
                             required
+                            disabled={loading}
                         />
                     </div>
-                    <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-                        Next
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full text-white py-2 rounded transition-colors ${loading ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+                    >
+                        {loading ? 'Processing...' : 'Next'}
                     </button>
                 </form>
             </div>

@@ -7,4 +7,9 @@ export interface Employee {
     role: string; // 'Owner' | 'Employee'
     status?: 'Active' | 'Inactive' | 'Pending';
     createdAt: Date;
+    workSchedule?: {
+        days: string[];
+        startTime: string;
+        endTime: string;
+    };
 }

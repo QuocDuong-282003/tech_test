@@ -16,6 +16,7 @@ import EmployeeLogin from './pages/employee/Login';
 import EmployeeVerify from './pages/employee/Verify';
 import EmployeeDashboard from './pages/employee/Dashboard';
 import EmployeeChat from './pages/employee/Chat';
+import EmployeeProfile from './pages/employee/Profile';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route element={<EmployeeLayout />}>
           <Route path={path.EMPLOYEE_DASHBOARD} element={<EmployeeDashboard />} />
           <Route path={path.EMPLOYEE_MESSAGES} element={<EmployeeChat />} />
+          <Route path={path.EMPLOYEE_PROFILE} element={<EmployeeProfile />} />
         </Route>
 
         <Route path={path.EMPLOYEE_LOGIN} element={<EmployeeLogin />} />

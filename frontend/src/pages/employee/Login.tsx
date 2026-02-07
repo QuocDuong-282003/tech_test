@@ -4,16 +4,20 @@ import { loginEmail } from '../../services/auth';
 
 const EmployeeLogin = () => {
     const [email, setEmail] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        setLoading(true);
         try {
             await loginEmail(email);
             localStorage.setItem('temp_email', email);
             navigate('/employee/verify');
         } catch (err: any) {
             alert('Error: ' + (err.response?.data?.error || err.message));
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -31,10 +35,15 @@ const EmployeeLogin = () => {
                             className="w-full px-3 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
                             placeholder="employee@company.com"
                             required
+                            disabled={loading}
                         />
                     </div>
-                    <button type="submit" className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
-                        Next
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className={`w-full text-white py-2 rounded transition-colors ${loading ? 'bg-green-400 cursor-not-allowed' : 'bg-green-600 hover:bg-green-700'}`}
+                    >
+                        {loading ? 'Processing...' : 'Next'}
                     </button>
                 </form>
             </div>

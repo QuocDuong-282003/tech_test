@@ -30,6 +30,7 @@ export const EmployeeTable = ({ employees, onEdit, onDelete }: Props) => {
             <th className="px-6 py-4 font-semibold text-gray-600">Email</th>
             <th className="px-6 py-4 font-semibold text-gray-600">Department</th>
             <th className="px-6 py-4 font-semibold text-gray-600">Status</th>
+            <th className="px-6 py-4 font-semibold text-gray-600">Schedule</th>
             <th className="px-6 py-4 font-semibold text-gray-600">Action</th>
           </tr>
         </thead>
@@ -43,6 +44,20 @@ export const EmployeeTable = ({ employees, onEdit, onDelete }: Props) => {
                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(emp.status || 'Active')}`}>
                   {emp.status || 'Active'}
                 </span>
+              </td>
+              <td className="px-6 py-4">
+                {emp.workSchedule ? (
+                  <div>
+                    <div className="font-medium text-gray-900 text-sm">
+                      {emp.workSchedule.startTime} - {emp.workSchedule.endTime}
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">
+                      {emp.workSchedule.days.join(', ')}
+                    </div>
+                  </div>
+                ) : (
+                  <span className="text-gray-400 italic text-sm">Not set</span>
+                )}
               </td>
               <td className="px-6 py-4">
                 <div className="flex space-x-3">

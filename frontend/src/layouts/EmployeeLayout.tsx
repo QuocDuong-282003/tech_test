@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { MessageSquare, LogOut, ClipboardList, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MessageSquare, LogOut, ClipboardList, ChevronLeft, ChevronRight, User } from 'lucide-react';
 import { io } from 'socket.io-client';
 
 const EmployeeLayout = () => {
@@ -52,6 +52,7 @@ const EmployeeLayout = () => {
     const menuItems = [
         { path: '/employee/dashboard', label: 'Manage Task', icon: ClipboardList },
         { path: '/employee/messages', label: 'Message', icon: MessageSquare },
+        { path: '/employee/profile', label: 'Profile', icon: User },
     ];
 
     return (

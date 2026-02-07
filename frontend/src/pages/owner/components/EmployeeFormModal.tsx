@@ -16,7 +16,12 @@ export const EmployeeFormModal = ({ isOpen, onClose, onSubmit, initialData }: Pr
     phone: '',
     department: '',
     role: 'Employee',
-    status: 'Active'
+    status: 'Active',
+    workSchedule: {
+      days: [] as string[],
+      startTime: '',
+      endTime: ''
+    }
   });
   const [loading, setLoading] = useState(false);
 
@@ -28,10 +33,19 @@ export const EmployeeFormModal = ({ isOpen, onClose, onSubmit, initialData }: Pr
         phone: initialData.phone || '',
         department: initialData.department || '',
         role: initialData.role || 'Employee',
-        status: (initialData.status as any) || 'Active'
+        status: (initialData.status as any) || 'Active',
+        workSchedule: initialData.workSchedule || { days: [], startTime: '', endTime: '' }
       });
     } else {
-      setFormData({ name: '', email: '', phone: '', department: '', role: 'Employee', status: 'Active' });
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        department: '',
+        role: 'Employee',
+        status: 'Active',
+        workSchedule: { days: [], startTime: '', endTime: '' }
+      });
     }
   }, [initialData, isOpen]);
 
@@ -133,6 +147,65 @@ export const EmployeeFormModal = ({ isOpen, onClose, onSubmit, initialData }: Pr
                 <option value="Inactive">Inactive</option>
                 <option value="Pending">Pending</option>
               </select>
+            </div>
+          </div>
+
+          {/* Work Schedule */}
+          <div className="border-t pt-4">
+            <h3 className="text-lg font-semibold mb-4">Work Schedule</h3>
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Start Time</label>
+                <input
+                  type="time"
+                  value={formData.workSchedule?.startTime || ''}
+                  onChange={e => setFormData({
+                    ...formData,
+                    workSchedule: { ...formData.workSchedule, startTime: e.target.value }
+                  })}
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">End Time</label>
+                <input
+                  type="time"
+                  value={formData.workSchedule?.endTime || ''}
+                  onChange={e => setFormData({
+                    ...formData,
+                    workSchedule: { ...formData.workSchedule, endTime: e.target.value }
+                  })}
+                  className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Working Days</label>
+              <div className="flex flex-wrap gap-2">
+                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+                  <button
+                    key={day}
+                    type="button"
+                    onClick={() => {
+                      const currentDays = formData.workSchedule?.days || [];
+                      const newDays = currentDays.includes(day)
+                        ? currentDays.filter(d => d !== day)
+                        : [...currentDays, day];
+                      setFormData({
+                        ...formData,
+                        workSchedule: { ...formData.workSchedule, days: newDays }
+                      });
+                    }}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${formData.workSchedule?.days?.includes(day)
+                      ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                      : 'bg-gray-100 text-gray-600 border border-transparent hover:bg-gray-200'
+                      }`}
+                  >
+                    {day}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 

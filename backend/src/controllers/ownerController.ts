@@ -58,7 +58,7 @@ export const validateAccessCode = async (req: Request, res: Response) => {
 };
 
 export const createEmployee = async (req: Request, res: Response) => {
-    const { name, email, department, role, phone } = req.body;
+    const { name, email, department, role, phone, workSchedule } = req.body;
 
     try {
         if (!name || !email) {
@@ -72,7 +72,8 @@ export const createEmployee = async (req: Request, res: Response) => {
             role: role || 'Employee',
             phone: phone || '',
             status: 'Active',
-            createdAt: new Date()
+            createdAt: new Date(),
+            workSchedule: workSchedule || null
         };
 
         const employeeId = await employeeService.create(newEmployee);
@@ -151,7 +152,7 @@ export const deleteEmployee = async (req: Request, res: Response) => {
 };
 
 export const updateEmployee = async (req: Request, res: Response) => {
-    const { employeeId, name, email, department, role, phone, status } = req.body;
+    const { employeeId, name, email, department, role, phone, status, workSchedule } = req.body;
 
     try {
         if (!employeeId) {
@@ -164,7 +165,8 @@ export const updateEmployee = async (req: Request, res: Response) => {
             department,
             role,
             phone,
-            status
+            status,
+            workSchedule
         };
 
         // remove undefined fields before update

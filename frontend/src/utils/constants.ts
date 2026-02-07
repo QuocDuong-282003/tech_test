@@ -15,4 +15,5 @@ export const path = {
     EMPLOYEE_VERIFY: '/employee/verify',
     EMPLOYEE_DASHBOARD: '/employee/dashboard',
     EMPLOYEE_MESSAGES: '/employee/messages',
+    EMPLOYEE_PROFILE: '/employee/profile',
 };

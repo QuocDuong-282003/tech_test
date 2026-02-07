@@ -8,6 +8,11 @@ export interface Employee {
     role: string;
     department?: string;
     status?: 'Active' | 'Inactive' | 'Pending';
+    workSchedule?: {
+        days: string[];
+        startTime: string;
+        endTime: string;
+    };
 }
 
 export const getEmployees = () => {

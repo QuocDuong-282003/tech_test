@@ -59,9 +59,9 @@
 | :---: | :---: |
 | ![Login](./frontend/public/image/empllogin.png) | ![Email](./frontend/public/image/noticeemail.png) |
 
-| Danh sách Task | Chat với Owner |
-| :---: | :---: |
-| ![Dashboard](./frontend/public/image/uihomeempl.png) | ![Chat](./frontend/public/image/chatempl.png) |
+| Danh sách Task | Chat với Owner | Profile |
+| :---: | :---: | :---: |
+| ![Dashboard](./frontend/public/image/uihomeempl.png) | ![Chat](./frontend/public/image/chatempl.png) | ![Profile](./frontend/public/image/profileempl.png) |
 
 ---
 
