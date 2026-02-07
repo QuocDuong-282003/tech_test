@@ -1,52 +1,62 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { path } from './utils/constants';
 import OwnerLayout from './layouts/OwnerLayout';
+import EmployeeLayout from './layouts/EmployeeLayout';
+import Landing from './pages/Landing';
+
 import OwnerLogin from './pages/owner/Login';
 import OwnerVerify from './pages/owner/Verify';
 import OwnerDashboard from './pages/owner/Dashboard';
 import OwnerTasks from './pages/owner/Tasks';
 import OwnerChat from './pages/owner/Chat';
+
 import EmployeeLogin from './pages/employee/Login';
 import EmployeeVerify from './pages/employee/Verify';
 import EmployeeDashboard from './pages/employee/Dashboard';
-import EmployeeLayout from './layouts/EmployeeLayout';
 import EmployeeChat from './pages/employee/Chat';
-
-const Landing = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50 space-x-4">
-    <a href="/owner/login" className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700">Owner Portal</a>
-    <a href="/employee/login" className="px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700">Employee Portal</a>
-  </div>
-);
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Landing />} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
-        {/* Owner Routes */}
-        <Route path="/owner/login" element={<OwnerLogin />} />
-        <Route path="/owner/verify" element={<OwnerVerify />} />
+      <Routes>
+
+        <Route path={path.HOME} element={<Landing />} />
 
         <Route element={<OwnerLayout />}>
-          <Route path="/owner/dashboard" element={<OwnerDashboard />} />
-          <Route path="/owner/employees" element={<OwnerDashboard />} />
-          <Route path="/owner/tasks" element={<OwnerTasks />} />
-          <Route path="/owner/messages" element={<OwnerChat />} />
+          <Route path={path.OWNER_DASHBOARD} element={<OwnerDashboard />} />
+          <Route path={path.OWNER_EMPLOYEES} element={<OwnerDashboard />} />
+          <Route path={path.OWNER_TASKS} element={<OwnerTasks />} />
+          <Route path={path.OWNER_MESSAGES} element={<OwnerChat />} />
         </Route>
 
+        <Route path={path.OWNER_LOGIN} element={<OwnerLogin />} />
+        <Route path={path.OWNER_VERIFY} element={<OwnerVerify />} />
 
-
-        {/* Employee Routes */}
-        <Route path="/employee/login" element={<EmployeeLogin />} />
-        <Route path="/employee/verify" element={<EmployeeVerify />} />
-
+        {/*  empl  */}
         <Route element={<EmployeeLayout />}>
-          <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-          <Route path="/employee/messages" element={<EmployeeChat />} />
+          <Route path={path.EMPLOYEE_DASHBOARD} element={<EmployeeDashboard />} />
+          <Route path={path.EMPLOYEE_MESSAGES} element={<EmployeeChat />} />
         </Route>
+
+        <Route path={path.EMPLOYEE_LOGIN} element={<EmployeeLogin />} />
+        <Route path={path.EMPLOYEE_VERIFY} element={<EmployeeVerify />} />
       </Routes>
     </Router>
+
   );
 }
 
